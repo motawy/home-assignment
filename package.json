@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Backend selection home assignment",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "node server.ts",
+    "dev": "node src/server.ts",
     "test": "jest"
   },
   "keywords": [],

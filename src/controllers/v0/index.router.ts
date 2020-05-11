@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
-// import { UserRouter } from './users/routes/user.router';
+import { InstantRouter } from './instant/routes/instant.router';
 
 const router: Router = Router();
 
-// router.use('/users', UserRouter);
+router.use('/instant', InstantRouter);
 
 router.get('/', async (req: Request, res: Response) => {
     res.send(`V0`);
