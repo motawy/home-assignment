@@ -7,11 +7,16 @@ import dotenv from 'dotenv'
 dotenv.config({ path: path.join(__dirname, '.env') });
 
 const app = express()
-connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-let db = connection;
+
+try {
+    connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+    let db = connection;
+} catch (error) {
+    console.error(error);
+}
 
 // Use the body parser middleware for post requests
 app.use(bodyParser.json());

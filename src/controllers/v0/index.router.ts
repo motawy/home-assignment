@@ -6,7 +6,7 @@ const router: Router = Router();
 router.use('/instant', InstantRouter);
 
 router.get('/', async (req: Request, res: Response) => {
-    res.send(`V0`);
+    res.send(`Version 0 - Testing`);
 });
 
 export const IndexRouter: Router = router;
