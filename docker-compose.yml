@@ -1,23 +1,21 @@
 version: "3"
 services:
-  bot:
-    build:
-      context: .
-      args:
-        - service_src=./bot/src
-    command: bash -c "npm run start:dev"
-    restart: on-failure
-    env_file:
-      - ./bot/environment
+  backend:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo
+  mongo:
+    image: "mongo:latest"
+    ports:
+      - 27017:27017
     volumes:
-      - ./bot/src:/usr/src/app/service/src:cached
-      - ./common:/usr/src/app/common:cached
-mongo:
-  image: "mongo:latest"
-  ports:
-    - 27017:27017
-rabbitmq:
-  image: "rabbitmq:management"
-  ports:
-    - "5672:5672"
-    - "15672:15672"
+      - ./docker-init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+    environment:
+      MONGO_INITDB_DATABASE: home-assignment
+  rabbitmq:
+    image: "rabbitmq:management"
+    ports:
+      - 5672:5672
+      - 15672:15672

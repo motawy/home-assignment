@@ -4,8 +4,13 @@
   "description": "Backend selection home assignment",
   "main": "src/server.ts",
   "scripts": {
+    "start": "docker-compose up",
     "dev": "ts-node-dev --respawn --transpileOnly server.ts",
     "test": "jest --detectOpenHandles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/motawy/home-assignment.git"
   },
   "keywords": [],
   "author": "Mohammed Tantawy",
