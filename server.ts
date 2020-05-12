@@ -19,6 +19,8 @@ app.listen(port, function () {
 try {
     connectDb().then(() => {
         console.log("Connected to Mongo");
+    }).catch(err => {
+        console.error(err);
     })
 } catch (error) {
     console.error(error);

@@ -1,2 +1,2 @@
 db.createCollection('instants');
-db.skills.createIndex({ _id: 'text' });
+db.instants.createIndex({ _id: 'text' });

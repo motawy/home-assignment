@@ -1,5 +1,5 @@
 import { connect } from 'mongoose'
-const uri = "mongodb://mongodb:27017/home-assignment"
+const uri = "mongodb://mongo:27017/home-assignment"
 
 export const connectDb = () => {
     return connect(uri, {

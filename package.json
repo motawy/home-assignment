@@ -4,8 +4,10 @@
   "description": "Backend selection home assignment",
   "main": "src/server.ts",
   "scripts": {
+    "start": "ts-node server.ts",
     "dev": "ts-node server.ts",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "try": "docker-compose up --build"
   },
   "repository": {
     "type": "git",
