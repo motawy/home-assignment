@@ -1,12 +1,9 @@
 import { connect } from 'mongoose'
+const uri = "mongodb://mongodb:27017/home-assignment"
 
-const connectionString = "mongodb://mongodb:27017/dhome-assignmentb"
-
-const connectDb = () => {
-    return connect(connectionString, {
-        useNewUrlParser: true, useUnifiedTopology: true
-    });
+export const connectDb = () => {
+    return connect(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
 };
-
-
-export default connectDb

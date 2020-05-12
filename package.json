@@ -4,8 +4,7 @@
   "description": "Backend selection home assignment",
   "main": "src/server.ts",
   "scripts": {
-    "start": "docker-compose up",
-    "dev": "ts-node-dev --respawn --transpileOnly server.ts",
+    "dev": "ts-node server.ts",
     "test": "jest --detectOpenHandles"
   },
   "repository": {
@@ -21,6 +20,7 @@
     "express": "^4.17.1",
     "jest": "^25.5.1",
     "mongoose": "^5.9.13",
+    "ts-node": "^8.10.1",
     "uuid": "^8.0.0"
   },
   "devDependencies": {

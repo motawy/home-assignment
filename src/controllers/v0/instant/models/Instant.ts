@@ -1,6 +1,6 @@
 import { Document, model, Schema } from "mongoose"
 
-const InstantSchema: Schema = Schema({
+const InstantSchema: Schema = new Schema({
     _id: {
         type: String,
         required: true
@@ -46,4 +46,4 @@ export interface IInstant extends Document {
     timestamp: string
 }
 
-export default model('Instant', InstantSchema);
+export const Instant = model<IInstant>('Instant', InstantSchema);

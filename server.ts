@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { IndexRouter } from './src/controllers/v0/index.router';
-import connectDb from './connection'
+import { connectDb } from './connection'
 const app = express()
 
 // Use the body parser middleware for post requests
@@ -18,7 +18,7 @@ app.listen(port, function () {
 
 try {
     connectDb().then(() => {
-        console.log("Connected to MongoDB");
+        console.log("Connected to Mongo");
     })
 } catch (error) {
     console.error(error);
