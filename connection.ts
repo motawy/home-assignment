@@ -1,6 +1,6 @@
 import { connect } from 'mongoose'
 
-const connectionString = "mongodb://mongodb:porta/db"
+const connectionString = "mongodb://mongodb:27017/dhome-assignmentb"
 
 const connectDb = () => {
     return connect(connectionString, {
