@@ -30,7 +30,7 @@ const InstantSchema: Schema = new Schema({
         required: true
     },
     timestamp: {
-        type: String,
+        type: Date,
         required: true
     }
 })
@@ -43,7 +43,7 @@ export interface IInstant extends Document {
     length: string,
     latitude: string,
     longitude: string,
-    timestamp: string
+    timestamp: Date
 }
 
 export const Instant = model<IInstant>('Instant', InstantSchema);
