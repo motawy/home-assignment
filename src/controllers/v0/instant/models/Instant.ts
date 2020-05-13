@@ -5,6 +5,10 @@ const InstantSchema: Schema = new Schema({
         type: String,
         required: true
     },
+    photo: {
+        type: File,
+        required: true
+    },
     username: {
         type: String,
         required: true
@@ -37,6 +41,7 @@ const InstantSchema: Schema = new Schema({
 
 export interface IInstant extends Document {
     _id: string,
+    photo: File,
     username: string,
     photoname: string,
     weight: string,

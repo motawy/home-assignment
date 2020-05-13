@@ -14,6 +14,7 @@ router.get('/instants', async (req: Request, res: Response) => {
 router.post('/instant', async (req: Request, res: Response) => {
     const photo = new Instant({
         _id: uuidv4(),
+        photo: req.body.photo,
         username: req.body.username,
         photoname: req.body.photoname,
         weight: req.body.weight,
