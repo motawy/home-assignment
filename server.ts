@@ -6,6 +6,7 @@ const app = express()
 
 // Use the body parser middleware for post requests
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/v0/', IndexRouter)
 
 // Setup server port
