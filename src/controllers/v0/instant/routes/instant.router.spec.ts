@@ -1,6 +1,5 @@
-import { Document } from 'mongoose'
 const { MongoClient } = require('mongodb');
-import { Instant } from '../models/Instant'
+import { Instant, IInstant } from '../models/Instant'
 import { v4 as uuidv4 } from 'uuid'
 
 describe('create', () => {
@@ -20,10 +19,13 @@ describe('create', () => {
         db.close()
     });
 
+    /**
+     * Test for successfull insertion of a record 
+     */
     it('should insert a instant into collection', async () => {
-        // Saving mock record to DB
+        // Attemp to insert mock record to DB
         const instants = db.collection("Instants")
-        const mockInstant: Document = new Instant({
+        const mockInstant: IInstant = new Instant({
             "_id": uuidv4(),
             "username": "mido",
             "photoname": "space",
@@ -36,12 +38,42 @@ describe('create', () => {
                 "originalname": "a3ea6f89314007.5df0e3f2c90bf.jpg",
             },
         });
-        await instants.insertOne(mockInstant);
+        try {
+            await instants.insertOne(mockInstant);
+        } catch (error) {
+            console.log(error.name)
+        }
 
         // Finding record just inserted
         const insertedInstant = await instants.findOne({ "_id": mockInstant._id })
 
         // Comparing record found with the mock just inserted
         expect(insertedInstant).toEqual(mockInstant.toJSON())
+    });
+
+    /**
+     * Test Validation for required attributes. 
+     * 'weight' attributes is missing from this insertion.
+     */
+    it('should give validation error when required element is not inserted', async () => {
+        const mockInstant: IInstant = new Instant({
+            "_id": uuidv4(),
+            "username": "mido",
+            "photoname": "space",
+            "length": "long",
+            "latitude": "12s 44n",
+            "longitude": "33e 13w",
+            "photo": {
+                "fieldname": "photo",
+                "originalname": "a3ea6f89314007.5df0e3f2c90bf.jpg",
+            },
+        });
+        let wrongDataType: any;
+        try {
+            wrongDataType = await mockInstant.save();
+        } catch (error) {
+            wrongDataType = error.name
+        }
+        expect(wrongDataType).toEqual("ValidationError")
     });
 })
