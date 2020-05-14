@@ -1,4 +1,4 @@
-import { Document, model, Schema } from "mongoose"
+import { model, Schema } from "mongoose"
 
 const InstantSchema: Schema = new Schema({
     _id: {
@@ -39,16 +39,4 @@ const InstantSchema: Schema = new Schema({
     }
 })
 
-export interface IInstant extends Document {
-    _id: string,
-    username: string,
-    photoname: string,
-    weight: string,
-    length: string,
-    latitude: string,
-    longitude: string,
-    photo: object,
-    timestamp: Date
-}
-
-export const Instant = model<IInstant>('Instant', InstantSchema);
+export const Instant = model('Instant', InstantSchema);
