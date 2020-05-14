@@ -3,7 +3,7 @@ import { InstantRouter } from './instant/routes/instant.router';
 
 const router: Router = Router();
 
-router.use('/in', InstantRouter);
+router.use('/instants', InstantRouter);
 
 router.get('/', async (req: Request, res: Response) => {
     res.send(`Version 0 - Testing`);
