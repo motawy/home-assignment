@@ -1,5 +1,6 @@
-const { MongoClient } = require('mongodb');
-import { Instant, IInstant } from '../models/Instant'
+import MongoClient from 'mongodb'
+import { Instant } from '../models/Instant'
+import { IInstant } from '../models/IInstant'
 import { v4 as uuidv4 } from 'uuid'
 
 describe('create', () => {

@@ -1,8 +1,12 @@
+/**
+ * Utility to resize images given in input using Jimp
+ * Saves the image in local folder /public/uploads/
+ */
+
 import Jimp from 'jimp';
 import { getImageExtentionUtil } from './extention'
 
 const imageResizerUtil = async (imgObject: any) => {
-    // define extention
     let extention = getImageExtentionUtil(imgObject.mimetype)
     if (extention === '') throw Error('Type not supported')
     const outpath = imgObject.path.split('_')[0] + '_140x140' + extention

@@ -15,7 +15,7 @@ const instantResizer = async () => {
             console.log(" [x] New image uploaded...");
             try {
                 await imageResizerUtil(JSON.parse(msg.content))
-                // SAVE  NEW IMAGE
+
             } catch (err) {
                 console.error(err);
             }

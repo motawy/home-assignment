@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
-import { Instant, IInstant } from '../models/Instant'
+import { Instant } from '../models/Instant'
+import { IInstant } from '../models/IInstant'
 import { v4 as uuidv4 } from 'uuid'
 import { upload } from './multer/config'
 import createTask from './instant.tasker'
@@ -17,7 +18,7 @@ router.post('/new', (req: Request, res: Response) => {
     upload(req, res, async (err: any) => {
         if (err) return res.status(400).send(err)
         const { username, photoname, weight, length, latitude, longitude } = req.body;
-        const photo: IInstant = new Instant({
+        const newInstant: IInstant = new Instant({
             _id: uuidv4(),
             username: username,
             photoname: photoname,
@@ -28,9 +29,9 @@ router.post('/new', (req: Request, res: Response) => {
             photo: req.file
         })
         try {
-            await photo.save()
+            await newInstant.save()
             res.status(200).send("Instant saved successfully.")
-            createTask(photo.photo)
+            createTask(newInstant.instant)
         } catch (error) {
             return res.status(400).send(error.name)
         }
