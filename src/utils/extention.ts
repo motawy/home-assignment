@@ -2,7 +2,7 @@
  * Util function to get extention type from input
  * Type supported png, jpg, jpeg and gif
  */
-export const getImageExtentionUtil = (mimetype: string): string => {
+export const getExtentionUtil = (mimetype: string): string => {
     switch (mimetype) {
         case 'image/png':
             return '.png'

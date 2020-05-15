@@ -2,6 +2,7 @@ version: "3"
 services:
   mongo:
     container_name: mongo
+    restart: on-failure
     image: "mongo:latest"
     ports:
       - 27017:27017
@@ -11,13 +12,14 @@ services:
       MONGO_INITDB_DATABASE: home-assignment
   rabbitmq:
     container_name: rabbitmq
+    restart: on-failure
     image: "rabbitmq:management"
     ports:
       - 5672:5672
       - 15672:15672
   backend:
     container_name: home_assignment
-    restart: always
+    restart: on-failure
     build: .
     ports:
       - 3000:3000
@@ -26,3 +28,4 @@ services:
       - rabbitmq
     volumes:
       - ./public/uploads:/app/public/uploads
+    command: ["./wait-for-it.sh", "rabbitmq:5672", "--", "npm", "run", "start"]

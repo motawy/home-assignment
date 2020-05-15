@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid'
 import { upload } from './multer/config'
 import createTask from './instant.tasker'
 const router: Router = Router();
-const queue = "instants"
 
 // Get all photos
 router.get('/all', async (req: Request, res: Response) => {
@@ -26,12 +25,16 @@ router.post('/new', (req: Request, res: Response) => {
             length: length,
             latitude: latitude,
             longitude: longitude,
-            photo: req.file
+            instant: req.file
         })
         try {
             await newInstant.save()
             res.status(200).send("Instant saved successfully.")
-            createTask(newInstant.instant)
+            const payload: Object = {
+                _id: newInstant._id,
+                instant: newInstant.instant
+            }
+            await createTask(payload)
         } catch (error) {
             return res.status(400).send(error.name)
         }

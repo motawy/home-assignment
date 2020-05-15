@@ -1,6 +1,6 @@
 import amqp from 'amqplib';
 import imageResizerUtil from '../resizer';
-
+import updateImageUtil from '../update-image'
 const instantResizer = async () => {
     try {
         const connection = await amqp.connect('amqp://rabbitmq')
@@ -14,8 +14,8 @@ const instantResizer = async () => {
         channel.consume(queue, async (msg: any) => {
             console.log(" [x] New image uploaded...");
             try {
-                await imageResizerUtil(JSON.parse(msg.content))
-
+                const resizedImage: Object = await imageResizerUtil(JSON.parse(msg.content))
+                await updateImageUtil(resizedImage)
             } catch (err) {
                 console.error(err);
             }

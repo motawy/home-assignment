@@ -34,7 +34,7 @@ describe('create', () => {
             "length": "long",
             "latitude": "12s 44n",
             "longitude": "33e 13w",
-            "photo": {
+            "instant": {
                 "fieldname": "photo",
                 "originalname": "a3ea6f89314007.5df0e3f2c90bf.jpg",
             },
@@ -64,7 +64,7 @@ describe('create', () => {
             "length": "long",
             "latitude": "12s 44n",
             "longitude": "33e 13w",
-            "photo": {
+            "instant": {
                 "fieldname": "photo",
                 "originalname": "a3ea6f89314007.5df0e3f2c90bf.jpg",
             },

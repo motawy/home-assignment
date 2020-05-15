@@ -36,11 +36,12 @@ const InstantSchema: Schema = new Schema({
     },
     resized: {
         type: Object,
+        default: {}
     },
     timestamp: {
         type: Date,
         default: Date.now(),
     }
-})
+}, { minimize: false })
 
 export const Instant: Model<IInstant> = model<IInstant>('Instant', InstantSchema);

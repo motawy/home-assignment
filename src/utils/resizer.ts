@@ -4,20 +4,28 @@
  */
 
 import Jimp from 'jimp';
-import { getImageExtentionUtil } from './extention'
+import { getExtentionUtil } from './extention'
 
-const imageResizerUtil = async (imgObject: any) => {
-    let extention = getImageExtentionUtil(imgObject.mimetype)
+const imageResizerUtil = async (imgObject: any): Promise<Object> => {
+    console.log(imgObject);
+
+    const { _id, instant } = imgObject;
+    let extention = getExtentionUtil(instant.mimetype)
     if (extention === '') throw Error('Type not supported')
-    const outpath = imgObject.path.split('_')[0] + '_140x140' + extention
+    const outpath = instant.path.split('_')[0] + '_140x140' + extention
     try {
-        const img = await Jimp.read(imgObject.path)
-        img
-            .resize(140, 140)       // resize 140x140
-            .quality(60)            // set quality
-            .write(outpath);        // save in local folder
+        const img = await Jimp.read(instant.path)
+        img.resize(140, 140).quality(60).write(outpath);
+        return {
+            "_id": _id,
+            "fullsizename": instant.filename,
+            "originalname": instant.originalname,
+            "mimetype": instant.mimetype,
+            "path": outpath,
+        }
     } catch (err) {
         console.log(err);
+        return null
     }
 }
 
