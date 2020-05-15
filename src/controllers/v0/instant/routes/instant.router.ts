@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import { Instant, IInstant } from '../models/Instant'
 import { v4 as uuidv4 } from 'uuid'
 import { upload } from './multer/config'
+import createTask from './instant.tasker'
 const router: Router = Router();
 const queue = "instants"
 
@@ -26,11 +27,10 @@ router.post('/new', (req: Request, res: Response) => {
             longitude: longitude,
             photo: req.file
         })
-        console.log(photo);
-
         try {
             await photo.save()
-            return res.status(200).send("Instant saved successfully.")
+            res.status(200).send("Instant saved successfully.")
+            createTask(photo.photo)
         } catch (error) {
             return res.status(400).send(error.name)
         }

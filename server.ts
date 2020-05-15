@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { IndexRouter } from './src/controllers/v0/index.router';
 import { connectDb } from './connection'
+import instantResizer from './src/utils/workers/instant-resizer'
 const app = express()
 
 // Use the body parser middleware for post requests
@@ -13,16 +14,9 @@ app.use('/api/v0/', IndexRouter)
 const port = process.env.PORT || 3000;
 
 // Launch app to listen to specified port
-app.listen(port, function () {
+app.listen(port, async () => {
     console.log('Running Rest API on port ' + port);
+    await connectDb()
+    console.log("Connected to Mongo")
+    instantResizer()
 });
-
-try {
-    connectDb().then(() => {
-        console.log("Connected to Mongo");
-    }).catch(err => {
-        console.error(err);
-    })
-} catch (error) {
-    console.error(error);
-}
