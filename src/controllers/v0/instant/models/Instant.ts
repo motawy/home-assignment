@@ -1,6 +1,10 @@
 import { model, Schema, Model } from "mongoose"
 import { IInstant } from './IInstant'
 
+/**
+ * Schema definition for Instants
+ * All attributes are required besides 'resized'
+ */
 const InstantSchema: Schema = new Schema({
     _id: {
         type: String,

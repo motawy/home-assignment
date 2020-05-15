@@ -1,6 +1,10 @@
 import amqp from 'amqplib';
 
-const createTask = async (msg: any) => {
+/**
+ * Send message to send to the queue
+ * Send data as Buffer on the resize_queue
+ */
+const sendTask = async (msg: any) => {
     try {
         const connection = await amqp.connect('amqp://rabbitmq')
         const channel = await connection.createChannel()
@@ -17,4 +21,4 @@ const createTask = async (msg: any) => {
     }
 }
 
-export default createTask
+export default sendTask

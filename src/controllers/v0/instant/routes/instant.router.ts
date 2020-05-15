@@ -3,16 +3,26 @@ import { Instant } from '../models/Instant'
 import { IInstant } from '../models/IInstant'
 import { v4 as uuidv4 } from 'uuid'
 import { upload } from './multer/config'
-import createTask from './instant.tasker'
+import sendTask from './instant.tasker'
 const router: Router = Router();
 
-// Get all photos
+/**
+ * Endpoint 'Get all photos'
+ * http://localhost:3000/api/v0/instants/all
+ * Returns json format data of all pictures
+ */
 router.get('/all', async (req: Request, res: Response) => {
     const instants = await Instant.find()
     if (instants === null || instants === undefined) return res.status(400).send("Error in getting the photos")
     return res.status(200).send(instants)
 })
 
+/**
+ * Endpoint 'Create an instant'
+ * http://localhost:3000/api/v0/instants/new
+ * Using the 'upload' middleware to accept multiform/form-data
+ * Saves new Instant to the DB and send resize job the the queue
+ */
 router.post('/new', (req: Request, res: Response) => {
     upload(req, res, async (err: any) => {
         if (err) return res.status(400).send(err)
@@ -34,7 +44,7 @@ router.post('/new', (req: Request, res: Response) => {
                 _id: newInstant._id,
                 instant: newInstant.instant
             }
-            await createTask(payload)
+            await sendTask(payload)
         } catch (error) {
             return res.status(400).send(error.name)
         }

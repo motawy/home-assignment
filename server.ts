@@ -1,19 +1,25 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { IndexRouter } from './src/controllers/v0/index.router';
-import { connectDb } from './connection'
+import { connectDb } from './src/utils/connection'
 import instantResizer from './src/utils/workers/worker.resizer'
 const app = express()
 
 // Use the body parser middleware for post requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Entrypoint for the API
 app.use('/api/v0/', IndexRouter)
 
 // Setup server port
 const port = process.env.PORT || 3000;
 
-// Launch app to listen to specified port
+/**
+ * Launch the app 
+ * Connect to DB
+ * Start Worker
+ */
 app.listen(port, async () => {
     console.log('Running Rest API on port ' + port);
     try {

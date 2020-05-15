@@ -1,6 +1,10 @@
 import amqp from 'amqplib';
 import imageResizerUtil from '../resizer';
 import updateImageUtil from '../update-image'
+
+/**
+ * Worker that process the message and update the record on the DB
+ */
 const instantResizer = async () => {
     try {
         const connection = await amqp.connect('amqp://rabbitmq')

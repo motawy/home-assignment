@@ -1,8 +1,8 @@
+import { Document } from "mongoose"
+
 /**
  * Instant Interface to serve as a type
  */
-import { Document } from "mongoose"
-
 export interface IInstant extends Document {
     _id: string,
     username: string,
