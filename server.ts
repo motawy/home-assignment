@@ -16,9 +16,7 @@ app.use('/api/v0/', IndexRouter)
 const port = process.env.PORT || 3000;
 
 /**
- * Launch the app 
- * Connect to DB
- * Start Worker
+ * Launch the app, connect to DB and start Worker
  */
 app.listen(port, async () => {
     console.log('Running Rest API on port ' + port);

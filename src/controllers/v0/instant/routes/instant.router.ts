@@ -46,9 +46,28 @@ router.post('/new', (req: Request, res: Response) => {
             }
             await sendTask(payload)
         } catch (error) {
-            return res.status(400).send(error.name)
+            return res.status(400).send(error)
         }
     })
+})
+
+
+router.post('/:image_id/resize', (req: Request, res: Response) => {
+    try {
+        Instant.findById(req.params.image_id, async (err: any, instant: IInstant) => {
+            if (err) return res.status(400).send(err);
+            const payload: Object = {
+                _id: instant._id,
+                instant: instant.instant
+            }
+            console.log(payload);
+            const isSent = await sendTask(payload)
+            if (isSent) return res.status(200).send("Resize job sent successfully")
+        })
+    } catch (error) {
+        console.error(error)
+        return res.status(400).send(error)
+    }
 })
 
 export const InstantRouter: Router = router;
