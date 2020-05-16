@@ -16,7 +16,9 @@ docker-compose up
 
 ## Tests
 
-For the tests I choose Jest as a suite and it will run all the tests using
+For the tests I choose Jest as a suite. To test all aspects you'll need an instance of RabbitMQ running locally.
+MongoDB uses an in-memory DB for testing purposes.
+To start testing simply run
 
 ```
 yarn test OR npm run test
