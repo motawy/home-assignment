@@ -3,7 +3,7 @@ import { Instant } from '../models/Instant'
 import { IInstant } from '../models/IInstant'
 import { v4 as uuidv4 } from 'uuid'
 import { upload } from './multer/config'
-import sendTask from './instant.sender'
+import sendTaskOnQueue from '../../../../utils/send-task'
 const router: Router = Router();
 
 /**
@@ -39,29 +39,22 @@ router.post('/new', (req: Request, res: Response) => {
         })
         try {
             await newInstant.save()
-            res.status(200).send("Instant saved successfully.")
-            const payload: Object = {
-                _id: newInstant._id,
-                instant: newInstant.instant
-            }
-            await sendTask(payload)
+            const isSent = sendTaskOnQueue(newInstant)
+            if (isSent) res.status(200).send("Instant saved successfully.")
         } catch (error) {
             return res.status(400).send(error)
         }
     })
 })
 
-
-router.post('/:image_id/resize', (req: Request, res: Response) => {
+/**
+ * Simple endpoint to send background job to the queue
+ */
+router.post('/resize/:image_id', (req: Request, res: Response) => {
     try {
         Instant.findById(req.params.image_id, async (err: any, instant: IInstant) => {
             if (err) return res.status(400).send(err);
-            const payload: Object = {
-                _id: instant._id,
-                instant: instant.instant
-            }
-            console.log(payload);
-            const isSent = await sendTask(payload)
+            const isSent = sendTaskOnQueue(instant)
             if (isSent) return res.status(200).send("Resize job sent successfully")
         })
     } catch (error) {
@@ -69,5 +62,7 @@ router.post('/:image_id/resize', (req: Request, res: Response) => {
         return res.status(400).send(error)
     }
 })
+
+
 
 export const InstantRouter: Router = router;

@@ -24,12 +24,12 @@ const mockSendTask = async (msg: any): Promise<boolean> => {
         const isSent = channel.sendToQueue(queue, Buffer.from(JSON.stringify(msg)), {
             persistent: true
         });
+        // This is needed only locally
         setTimeout(() => {
             connection.close()
         }, 500);
         return isSent
     } catch (error) {
-        console.error(error);
         return false;
     }
 }
