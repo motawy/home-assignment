@@ -3,7 +3,7 @@ import { Instant } from '../models/Instant'
 import { IInstant } from '../models/IInstant'
 import { v4 as uuidv4 } from 'uuid'
 import { upload } from './multer/config'
-import sendTask from './instant.tasker'
+import sendTask from './instant.sender'
 const router: Router = Router();
 
 /**
