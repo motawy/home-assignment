@@ -1,21 +1,31 @@
 # Backend selection home assignment
 
 ## Getting started
-Project based on Docker. To run the project:
-```
-docker-compose up
-```
-## Tests
+
 To run the project you'll need to install the dependencies
+
 ```
 yarn OR npm install
 ```
+
+Project based on Docker. To run the project:
+
+```
+docker-compose up
+```
+
+## Tests
+
 For the tests I choose Jest as a suite and it will run all the tests using
+
 ```
 yarn test OR npm run test
 ```
 
+This command will run automatically all tests present in the project (\*.spec.ts).
+
 ## Resources used
+
 - [MongoDB](https://www.mongodb.com) - NOSql DB solution
 - [RabbitMQ](https://www.rabbitmq.com) - Message queue broker
 - [Jest](https://jestjs.io) - Testing suite
