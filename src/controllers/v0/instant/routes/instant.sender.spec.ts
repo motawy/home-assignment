@@ -1,35 +1,15 @@
-
-import amqp from 'amqplib';
+import sendTask from './instant.sender'
+import { RABBITMQ_URI_TEST } from '../../../../utils/uris';
 
 test('Should send message on queue correctly', async () => {
     const msg: Object = {
         "message": "Test 1,2"
     }
-    const isSent = await mockSendTask(msg)
+    let isSent = false;
+    try {
+        isSent = await sendTask(RABBITMQ_URI_TEST, msg)
+    } catch (error) {
+        throw Error("Error in sending a message")
+    }
     expect(isSent).toEqual(true)
 })
-
-/**
- * This is the exact same function but different connection string
- * Needs running instance of RabbitMQ
- */
-const mockSendTask = async (msg: any): Promise<boolean> => {
-    try {
-        const connection = await amqp.connect('amqp://localhost:5672')
-        const channel = await connection.createChannel()
-        const queue = 'resize_queue';
-        channel.assertQueue(queue, {
-            durable: true
-        });
-        const isSent = channel.sendToQueue(queue, Buffer.from(JSON.stringify(msg)), {
-            persistent: true
-        });
-        // This is needed only locally
-        setTimeout(() => {
-            connection.close()
-        }, 500);
-        return isSent
-    } catch (error) {
-        return false;
-    }
-}

@@ -3,9 +3,9 @@ import amqp from 'amqplib';
 /**
  * Send message to send to the queue, data is sent as Buffer on the resize_queue
  */
-const sendTask = async (msg: any): Promise<boolean> => {
+const sendTask = async (uri: string, msg: any): Promise<boolean> => {
     try {
-        const connection = await amqp.connect('amqp://rabbitmq')
+        const connection = await amqp.connect(uri)
         const channel = await connection.createChannel()
         const queue = 'resize_queue';
         channel.assertQueue(queue, {

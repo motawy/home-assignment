@@ -18,6 +18,11 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": ["src/**/*", "server.ts", "server.spec.ts"],
+  "include": [
+    "src/**/*",
+    "server.ts",
+    "server.spec.ts",
+    "jest-mongodb-config.js"
+  ],
   "exclude": ["**/*.spec.ts"]
 }

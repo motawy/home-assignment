@@ -1,13 +1,14 @@
 import amqp from 'amqplib';
 import imageResizerUtil from '../resizer';
 import updateImageUtil from '../update-image'
+import { RABBITMQ_URI } from '../uris'
 
 /**
  * Worker that process the message and update the record on the DB
  */
 const instantResizer = async () => {
     try {
-        const connection = await amqp.connect('amqp://rabbitmq')
+        const connection = await amqp.connect(RABBITMQ_URI)
         const channel = await connection.createChannel()
         const queue = 'resize_queue';
         channel.assertQueue(queue, {

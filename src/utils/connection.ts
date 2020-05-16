@@ -1,12 +1,15 @@
 import { connect } from 'mongoose'
-const uri = "mongodb://mongo:27017/home-assignment"
 
 /**
  * Utility for DB connection
  */
-export const connectDb = async () => {
-    return await connect(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
+export const connectDb = async (uri: string): Promise<any> => {
+    try {
+        await connect(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+    } catch (error) {
+        throw Error("Error while connecting to the DB: " + error)
+    }
 };
