@@ -5,5 +5,5 @@ test('Find extention', () => {
 })
 
 test('Fail to find extention', () => {
-    expect(getExtentionUtil(null)).toEqual('')
+    expect(getExtentionUtil('pdf')).toEqual('')
 })

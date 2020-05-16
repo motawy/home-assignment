@@ -11,7 +11,6 @@ const updateImageUtil = async (resizedImage: any) => {
             instant.resized = resizedImage
             await instant.save()
         })
-        console.log("Record update successfully");
         return instantUpdated
     } catch (error) {
         console.error(error)
