@@ -14,10 +14,6 @@ beforeAll(async () => {
     db = await connection.db("test");
 });
 
-afterAll(async () => {
-    await connection.close();
-    db.close()
-});
 
 /**
  * Test for successfull insertion of a record 
