@@ -7,8 +7,6 @@ import { getExtentionUtil } from './extention'
  */
 const imageResizerUtil = async (imgObject: any): Promise<Object> => {
     const { _id, details } = imgObject;
-    if (!_id || !details) throw Error('Necessary fields for request: _id, details.')
-    if (!details.filename || !details.originalname || !details.mimetype) throw Error('Necessary fields needed.')
     let extention = getExtentionUtil(details.mimetype)
     if (extention === '') console.error('Type not supported')
     const outpath = details.path.split('_')[0] + '_140x140' + extention

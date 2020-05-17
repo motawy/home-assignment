@@ -53,7 +53,8 @@ router.post('/new', (req: Request, res: Response) => {
 router.post('/resize/:image_id', (req: Request, res: Response) => {
     try {
         Instant.findById(req.params.image_id, async (err: any, instant: IInstant) => {
-            if (err) return res.status(400).send(err);
+            if (err) return res.status(400).send(err)
+            if (!instant) return res.status(404).send("Instant not found")
             const isSent = sendTaskOnQueue(instant)
             if (isSent) return res.status(200).send("Resize job sent successfully")
         })
