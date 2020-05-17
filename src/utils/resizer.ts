@@ -6,18 +6,20 @@ import { getExtentionUtil } from './extention'
  * Saves the image in local folder /public/uploads/
  */
 const imageResizerUtil = async (imgObject: any): Promise<Object> => {
-    const { _id, instant } = imgObject;
-    let extention = getExtentionUtil(instant.mimetype)
+    const { _id, details } = imgObject;
+    if (!_id || !details) throw Error('Necessary fields for request: _id, details.')
+    if (!details.filename || !details.originalname || !details.mimetype) throw Error('Necessary fields needed.')
+    let extention = getExtentionUtil(details.mimetype)
     if (extention === '') console.error('Type not supported')
-    const outpath = instant.path.split('_')[0] + '_140x140' + extention
+    const outpath = details.path.split('_')[0] + '_140x140' + extention
     try {
-        const img = await Jimp.read(instant.path)
+        const img = await Jimp.read(details.path)
         img.resize(140, 140).quality(60).write(outpath);
         return {
             "_id": _id,
-            "fullsizename": instant.filename,
-            "originalname": instant.originalname,
-            "mimetype": instant.mimetype,
+            "fullsizename": details.filename,
+            "originalname": details.originalname,
+            "mimetype": details.mimetype,
             "path": outpath,
         }
     } catch (err) {

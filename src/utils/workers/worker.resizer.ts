@@ -1,7 +1,7 @@
 import amqp from 'amqplib';
 import imageResizerUtil from '../resizer';
 import updateImageUtil from '../update-image'
-import { RABBITMQ_URI } from '../uris'
+import { RABBITMQ_URI } from '../constants'
 
 /**
  * Worker that process the message and update the record on the DB

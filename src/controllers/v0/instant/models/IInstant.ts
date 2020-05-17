@@ -11,7 +11,7 @@ export interface IInstant extends Document {
     length: string,
     latitude: string,
     longitude: string,
-    instant: Object,
+    details: Object,
     resized?: Object,
     timestamp: Date
 }

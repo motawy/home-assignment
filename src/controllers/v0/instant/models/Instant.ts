@@ -34,7 +34,7 @@ const InstantSchema: Schema = new Schema({
         type: String,
         required: true
     },
-    instant: {
+    details: {
         type: Object,
         required: true
     },

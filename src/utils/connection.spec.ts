@@ -1,5 +1,5 @@
 import { connectDb } from './connection'
-import { MONGODB_URI_TEST } from './uris'
+import { MONGODB_URI_TEST } from './constants'
 
 test('Should connect to the DB', () => {
     let mockFn = null;

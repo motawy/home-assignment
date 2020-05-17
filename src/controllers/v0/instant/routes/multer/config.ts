@@ -26,4 +26,4 @@ const fileFilter = (req: any, file: any, cb: any) => {
         cb(new Error("Image uploaded is not of type jpg/jpeg, png or gif"), false);
     }
 }
-export const upload = multer({ storage: storage, fileFilter: fileFilter }).single('instant');
+export const upload = multer({ storage: storage, fileFilter: fileFilter }).single('details');

@@ -35,7 +35,7 @@ router.post('/new', (req: Request, res: Response) => {
             length: length,
             latitude: latitude,
             longitude: longitude,
-            instant: req.file
+            details: req.file
         })
         try {
             await newInstant.save()
