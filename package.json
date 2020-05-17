@@ -5,8 +5,9 @@
   "main": "src/server.ts",
   "scripts": {
     "start": "ts-node server.ts",
-    "test": "jest --detectOpenHandles",
-    "go": "docker-compose up --build"
+    "test": "jest",
+    "up": "docker-compose up --build",
+    "stop": "docker-compose down"
   },
   "repository": {
     "type": "git",

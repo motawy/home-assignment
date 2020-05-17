@@ -1,6 +1,6 @@
 import amqp from 'amqplib';
-import imageResizerUtil from '../resizer';
-import updateImageUtil from '../update-image'
+import imageResizerUtil from './resizer';
+import updateImageUtil from './update-image'
 import { RABBITMQ_URI } from '../constants'
 
 /**

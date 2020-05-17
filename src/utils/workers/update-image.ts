@@ -1,4 +1,4 @@
-import { Instant } from '../controllers/v0/instant/models/Instant'
+import { Instant } from '../../controllers/v0/instant/models/Instant'
 
 /**
  * Utility to update an image record to add the resized version

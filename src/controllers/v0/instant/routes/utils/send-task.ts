@@ -1,6 +1,6 @@
-import sendTask from '../controllers/v0/instant/routes/instant.sender'
-import { IInstant } from '../controllers/v0/instant/models/IInstant'
-import { RABBITMQ_URI } from './constants'
+import sendTask from '../instant.sender'
+import { IInstant } from '../../models/IInstant'
+import { RABBITMQ_URI } from '../../../../../utils/constants'
 
 /**
  * Util to send messages on the queue
