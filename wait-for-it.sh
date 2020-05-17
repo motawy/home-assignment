@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Use this script to test if a given TCP host/port are available
+# This script is needed to test if a given TCP host/port are available
+# RabbitMQ container takes longer to start which creates problem because the app tries to connect before the container is up.
 
 WAITFORIT_cmdname=${0##*/}
 
