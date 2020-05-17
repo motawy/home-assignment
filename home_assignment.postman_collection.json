@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "8c8445a1-2c97-4805-9f33-22c59e157cfa",
+		"name": "home_assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all photos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v0/instants/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v0",
+						"instants",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create instant",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "mido",
+							"description": "Required",
+							"type": "text"
+						},
+						{
+							"key": "photoname",
+							"value": "space",
+							"description": "Required",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "313kb",
+							"type": "text"
+						},
+						{
+							"key": "length",
+							"value": "long",
+							"description": "Required",
+							"type": "text"
+						},
+						{
+							"key": "latitude",
+							"value": "12s 44n",
+							"description": "Required",
+							"type": "text"
+						},
+						{
+							"key": "longitude",
+							"value": "33e 13w",
+							"description": "Required",
+							"type": "text"
+						},
+						{
+							"key": "details",
+							"description": "Required",
+							"type": "file",
+							"src": []
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v0/instants/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v0",
+						"instants",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resize Job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v0/instants/resize/c9c1ac53-0bdd-4854-8f87-56a94fab9159",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v0",
+						"instants",
+						"resize",
+						"c9c1ac53-0bdd-4854-8f87-56a94fab9159"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
