@@ -3,8 +3,8 @@ import bodyParser from 'body-parser';
 import { IndexRouter } from './src/controllers/v0/index.router';
 import { connectDb } from './src/utils/connection'
 import instantResizer from './src/utils/workers/worker.resizer'
+import { MONGODB_URI } from './src/utils/constants'
 const app = express()
-const uri = "mongodb://mongo:27017/home-assignment"
 
 // Use the body parser middleware for post requests
 app.use(bodyParser.json());
@@ -22,7 +22,7 @@ const port = process.env.PORT || 3000;
 app.listen(port, async () => {
     console.log('Running Rest API on port ' + port);
     try {
-        await connectDb(uri)
+        await connectDb(MONGODB_URI)
         console.log("Connected to Mongo")
         await instantResizer()
     } catch (err) {
